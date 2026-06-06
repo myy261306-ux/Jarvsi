@@ -1334,6 +1334,7 @@ class MainWindow(QMainWindow):
             lay.addWidget(lbl)
 
         return w
+
     def _build_right_panel(self) -> QWidget:
         w = QWidget()
         w.setFixedWidth(_RIGHT_W)
@@ -1381,6 +1382,22 @@ class MainWindow(QMainWindow):
         self._mute_btn.clicked.connect(self._toggle_mute)
         self._style_mute_btn()
         lay.addWidget(self._mute_btn)
+
+        api_btn = QPushButton("⚙  ADD API")
+        api_btn.setFixedHeight(28)
+        api_btn.setFont(QFont("Courier New", 7, QFont.Weight.Bold))
+        api_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        api_btn.setStyleSheet(f"""
+            QPushButton {{
+                background: transparent; color: {C.ACC};
+                border: 1px solid {C.ACC}; border-radius: 3px;
+            }}
+            QPushButton:hover {{
+                background: {C.ACC}; color: {C.DARK}; font-weight: bold;
+            }}
+        """)
+        api_btn.clicked.connect(self._show_setup)
+        lay.addWidget(api_btn)
 
         fs_btn = QPushButton("⛶  FULLSCREEN  [F11]")
         fs_btn.setFixedHeight(26)
